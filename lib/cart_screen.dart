@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_complete_guide/orders.dart';
-import 'package:flutter_complete_guide/products_overview_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'cart.dart' show Cart;
 import 'cart_item.dart';
+import 'product_grid.dart';
 import 'sign_up.dart';
 
 class CartScreen extends StatefulWidget {
@@ -35,9 +35,10 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     final cart = Provider.of<Cart>(context);
+    final orders = Provider.of<Orders>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('$username Your Cart'),
+        title: Text(username.isEmpty ? 'Add to cart' : '$username\'s Cart'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_outlined,
@@ -58,6 +59,7 @@ class _CartScreenState extends State<CartScreen> {
           IconButton(
             onPressed: () {
               cart.clear();
+              orders.clear();
               logindata.setBool('login', true);
               Navigator.pushReplacement(
                 context,

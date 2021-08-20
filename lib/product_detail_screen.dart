@@ -50,6 +50,9 @@ class ProductDetailScreen extends StatelessWidget {
               child: Text(
                 '${loadedProduct.description}',
                 textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
                 softWrap: true,
               ),
             ),
@@ -59,7 +62,7 @@ class ProductDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: () {

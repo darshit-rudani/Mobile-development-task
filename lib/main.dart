@@ -6,8 +6,8 @@ import 'package:flutter_complete_guide/product_detail_screen.dart';
 import 'package:flutter_complete_guide/products.dart';
 import 'package:flutter_complete_guide/sign_up.dart';
 import 'package:provider/provider.dart';
-import './products_overview_screen.dart';
 import 'cart.dart';
+import 'product_grid.dart';
 
 void main() {
   runApp(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'cart_screen.dart';
-import 'products_overview_screen.dart';
+import 'product_grid.dart';
 
 class SignUp extends StatefulWidget {
   static const routeName = '/sign-up';
@@ -50,7 +50,7 @@ class _SignUpState extends State<SignUp> {
     mobile_no_controller.dispose();
     pass.dispose();
     confirmPass.dispose();
-
+    logindata.setString('username', '');
     super.dispose();
   }
 
@@ -71,6 +71,7 @@ class _SignUpState extends State<SignUp> {
       });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +80,23 @@ class _SignUpState extends State<SignUp> {
         title: Text(
           'Sign up',
         ),
-        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_outlined,
+          ),
+          color: Colors.white,
+          onPressed: () {
+            dispose();
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return ProductsOverviewScreen();
+                },
+              ),
+            );
+          },
+        ),
       ),
       body: SingleChildScrollView(
         child: Form(
@@ -136,6 +153,7 @@ class _SignUpState extends State<SignUp> {
                         hintText: "Enter password",
                         labelText: "Password",
                       ),
+                      obscureText: true,
                       controller: pass,
                       validator: (val) {
                         final isDigitsOnly = int.tryParse(val);
@@ -152,6 +170,7 @@ class _SignUpState extends State<SignUp> {
                           hintText: "Enter password",
                           labelText: "Confirm password",
                         ),
+                        obscureText: true,
                         controller: confirmPass,
                         validator: (val) {
                           if (val.isEmpty) return 'Empty';
